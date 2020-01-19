@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import index from '../views/index.vue';
+import routeComponent from '../views/route.vue';
 
 Vue.use(VueRouter);
 
@@ -14,6 +15,20 @@ const routes = [
       {
         path: 'index',
         component: () => import('../views/Home.vue'),
+      },
+      {
+        path: 'support',
+        component: routeComponent,
+        children: [
+          {
+            path: 'iview',
+            component: () => import('../views/supportIE/view-design.vue'),
+          },
+          {
+            path: 'ele',
+            component: () => import('../views/supportIE/element.vue'),
+          },
+        ],
       },
       {
         path: '/about',
