@@ -1,0 +1,19 @@
+@import "./variants";
+@import "./mixins";
+
+// 设置表格 table 一些常见的样式
+.ivu-table-wrapper + .ivu-page {
+  margin-top: $gap-medium;
+  @include flex(flex-end);
+}
+
+.ivu-table-default {
+  td {
+    font-size: $font-size-small;
+  }
+}
+
+// 设置弹出框、tooltips 等一些样式
+.ivu-tooltip-popper {
+  font-size: $font-size-small;
+}

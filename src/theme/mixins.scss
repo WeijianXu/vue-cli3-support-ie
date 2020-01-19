@@ -1,0 +1,75 @@
+@mixin gradient-text($start, $end, $direction: top) {
+  background-image: -webkit-linear-gradient($direction, $start, $end);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin flex($justify: center, $align: center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin flexCol($justify: center, $align: center) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// 单行文本截断
+@mixin textEllipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+// 多行文本截断
+@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1) {
+  $left: 2px;
+  $dotTop: -1.5em;
+  $dotWidth: 2.5em;
+
+  &:before {
+    content: '';
+    float: left;
+    width: $left;
+    height: $lineHeight * $lineCount;
+  }
+  // 设置容器高度和行高
+  & {
+    overflow: hidden;
+    position: relative;
+    line-height: $lineHeight;
+    height: $lineHeight * $lineCount;
+  }
+  // 设置子元素
+  & > *:first-child {
+    float: right;
+    width: 100%;
+    margin-left: 0-$left;
+  }
+
+  &:after {
+    content: '\02026';
+    box-sizing: content-box;
+
+    float: right;
+    position: relative;
+    top: $dotTop; // 溢出时，出现
+    left: 100%;
+    width: $dotWidth;
+    margin-left: 0-$dotWidth;
+    padding-right: $left;
+
+    text-align: right;
+
+    background-size: 100% 100%;
+    /* 512x1 image, gradient for IE9. Transparent at 0% -> white at 50% -> white at 100%.*/
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0),
+      white 50%,
+      white
+    );
+  }
+}

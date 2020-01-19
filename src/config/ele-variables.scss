@@ -1,0 +1,9 @@
+$--border-radius-base: 2px !default;
+/// borderRadius|1|Radius|0
+$--border-radius-small: 2px !default;
+
+$--card-border-radius: $--border-radius-base;
+
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import '~element-ui/packages/theme-chalk/src/index';

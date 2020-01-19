@@ -1,0 +1,8 @@
+@import './mixins';
+
+.flex-center {
+  @include flex();
+}
+.text-ellipsis {
+  @include textEllipsis();
+}
