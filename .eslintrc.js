@@ -13,7 +13,7 @@ module.exports = {
     // iview 中关闭自闭合标签校验
     'vue/no-parsing-error': [2, { 'x-invalid-end-tag': false }],
     // 关闭垫片校验
-    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    // 'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
   },
   parserOptions: {
     parser: 'babel-eslint',

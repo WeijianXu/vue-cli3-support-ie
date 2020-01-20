@@ -36,4 +36,13 @@
 export default {};
 </script>
 
-<style></style>
+<style lang="scss">
+@import "@/theme/variants";
+
+.ivu-layout {
+  height: 100%;
+}
+.ivu-layout-content {
+  padding: $gap-medium $gap;
+}
+</style>
