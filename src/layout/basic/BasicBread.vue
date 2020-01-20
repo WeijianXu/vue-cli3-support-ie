@@ -1,5 +1,5 @@
 <template>
-  <Breadcrumb separator=">">
+  <Breadcrumb :class="pre" separator=">">
     <!-- 第一项默认是当前系统首页 -->
     <!-- <BreadcrumbItem v-if="!noHomeBread" :to="homeInfo.path">
       {{ homeInfo.name }}
@@ -9,12 +9,14 @@
       v-for="(path, idx) in currMenuPath"
       :key="path.name"
       :to="idx !== currMenuPath.length - 1 ? path.to : ''"
-    >{{ path.text }}</BreadcrumbItem>
+      >{{ path.text }}</BreadcrumbItem
+    >
   </Breadcrumb>
 </template>
 
 <script>
 import { getMenus, getPath } from '../const';
+import { uiPre } from '../../config/env';
 
 export default {
   props: {
@@ -37,15 +39,16 @@ export default {
     }, */
   },
   data() {
-    const { /* noHomeBread,  */currMenuPath } = this.getCurrMenuPath(this.$route);
+    const { /* noHomeBread,  */ currMenuPath } = this.getCurrMenuPath(this.$route);
     return {
+      pre: `${uiPre}basicBread`,
       currMenuPath, // 当前路由对应的路径表
       // noHomeBread,
     };
   },
   watch: {
     $route(newRoute) {
-      const { /* noHomeBread,  */currMenuPath } = this.getCurrMenuPath(newRoute);
+      const { /* noHomeBread,  */ currMenuPath } = this.getCurrMenuPath(newRoute);
       // 根据当前匹配的路径表得到面包屑路径数据
       this.currMenuPath = currMenuPath;
       // this.noHomeBread = noHomeBread;
@@ -62,12 +65,30 @@ export default {
       const currMenuPath = getPath(currMenu);
       // 菜单只有一项时，不显示
       if (currMenuPath.length === 1) {
-        return { /* noHomeBread: true,  */currMenuPath: [] };
+        return { /* noHomeBread: true,  */ currMenuPath: [] };
       }
-      return { /* noHomeBread: false,  */currMenuPath };
+      return { /* noHomeBread: false,  */ currMenuPath };
     },
   },
 };
 </script>
 
-<style></style>
+<style lang="scss">
+@import "@/theme/variants";
+@import "@/theme/mixins";
+
+$name: "basicBread";
+.ivu-breadcrumb.#{$pre}#{$name} {
+  font-size: $font-size-small;
+  > span:last-child {
+    font-weight: 400;
+    color: $text-color;
+  }
+  a {
+    color: $subsidiary-color;
+  }
+  .ivu-breadcrumb-item-separator {
+    color: $subsidiary-color;
+  }
+}
+</style>

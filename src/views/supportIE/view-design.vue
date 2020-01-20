@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>view design 支持IE</h1>
+    <h2>view design 支持IE</h2>
     <x-artical-card title="Grid 栅格布局">
       <Row>
         <Col span="12">col-12</Col>

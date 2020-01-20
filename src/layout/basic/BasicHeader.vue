@@ -134,6 +134,11 @@ $name: "basicHeader";
     cursor: pointer;
   }
 
+  .ivu-menu-item.ivu-menu-item-active, .ivu-menu-submenu.ivu-menu-child-item-active {
+    background: #fff;
+    color: #333;
+  }
+
   // 用户下拉菜单
   .ivu-dropdown-rel {
     @include flex(flex-end, center);

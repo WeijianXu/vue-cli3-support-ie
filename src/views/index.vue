@@ -42,8 +42,8 @@ export default {
 .page__bread, .page__body {
   margin: $gap-medium $gap;
 }
-// .page__body{
-//   // 边距共 20px *4 + 2px（防抖）
-//   height: calc(100% - 82px);
-// }
+.page__body{
+  // 边距共 16px *4 + 2px（防抖）
+  height: calc(100% - 66px);
+}
 </style>

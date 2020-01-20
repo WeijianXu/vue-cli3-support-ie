@@ -134,8 +134,5 @@ $name: "basicLayout";
     box-shadow: 2px 0px $shadow-y rgba(21, 101, 167, 0.2);
     overflow-y: auto;
   }
-  .ivu-layout-content {
-    padding: $gap-medium $gap;
-  }
 }
 </style>

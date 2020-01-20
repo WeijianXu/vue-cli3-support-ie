@@ -15,11 +15,11 @@ $high-risk: #ff5614;
 $pre: 'x-';
 
 // 间距大小
-$gap: 1.5rem; // 24px
-$gap-medium: 1.25rem; // 20px
+$gap: 20px; // 24px
+$gap-medium: 16px; // 20px
 
 // 布局变量
-$side-width: 260px;
+$side-width: 240px;
 $shadow-y: 6px;
 
 /* $end 本系统特有的规范定义 */
@@ -43,9 +43,9 @@ $zj-text-color: #5e6c84;
 // // Base
 $title-color: #344563;
 $text-color: #333333;
-$font-size-base: 16px;
-$font-size-small: 14px;
-$font-size-large: 18px;
+$font-size-base: 14px;
+$font-size-small: 12px;
+$font-size-large: 16px;
 $border-radius-base: 4px;
 $border-radius-small: 2px;
 
