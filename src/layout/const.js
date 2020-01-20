@@ -15,11 +15,11 @@ export const menu = options => Object.assign({
 
 // 最多支持两级菜单
 export const headerMenus = () => [
-  menu({ name: 'home', text: '首页', to: '' }),
+  menu({ name: 'home', text: '首页', to: '/index' }),
   menu({
-    name: 'risk',
+    name: 'support',
     text: '兼容IE',
-    to: '',
+    to: '/support',
     children: [
       menu({ name: 'iview', text: 'View design', to: '/support/iview' }),
       menu({ name: 'ele', text: 'Element UI', to: '/support/ele' }),

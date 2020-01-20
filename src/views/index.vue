@@ -1,5 +1,5 @@
 <template>
-  <BasicLayout :side-menus="sideMenus">
+  <BasicLayout :user-info="userInfo" :side-menus="sideMenus" @userMenuClick="onUserMenuClick">
     <BasicBread :menus="sideMenus" class="page__bread"></BasicBread>
     <div class="page__body">
       <router-view></router-view>
@@ -18,8 +18,20 @@ export default {
   },
   data() {
     return {
+      userInfo: {
+        username: 'admin',
+      },
       sideMenus,
     };
+  },
+  methods: {
+    onUserMenuClick(menuName) {
+      if (menuName === 'logout') {
+        console.log('====================================');
+        console.log('user logout!');
+        console.log('====================================');
+      }
+    },
   },
 };
 </script>

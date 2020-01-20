@@ -77,6 +77,11 @@ export default {
         this.defaultName || (this.data.length > 0 ? this.data[0].name : ''),
     };
   },
+  watch: {
+    defaultName(newVal) {
+      this.activeName = newVal;
+    },
+  },
 };
 </script>
 

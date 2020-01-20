@@ -1,40 +1,24 @@
 <template>
   <Layout :class="pre">
-    <Header>
-      <!-- <Menu mode="horizontal" theme="primary" active-name="home">
-        <MenuItem name="home" to="/">
-          <Icon type="ios-home-outline" />
-          首页
-        </MenuItem>
-        <Submenu name="support">
-          <template slot="title">
-            <Icon type="ios-stats" />
-            兼容IE
-          </template>
-          <MenuGroup title="ui">
-            <MenuItem name="view-design" to="/support/iview">View design</MenuItem>
-            <MenuItem name="element ui" to="/support/ele">Element UI</MenuItem>
-          </MenuGroup>
-        </Submenu>
-        <MenuItem name="about" to="/about">
-          <Icon type="ios-people" />
-          关于我们
-        </MenuItem>
-      </Menu> -->
-      <BasicMenu
-        mode="horizontal"
-        theme="primary"
-        :data="headerMenus"
-        :default-name="defaultSideMenu"
-      ></BasicMenu>
-    </Header>
-    <Layout>
-      <Sider hide-trigger>
+    <BasicHeader
+      :header-menus="headerMenus"
+      :title="projectName"
+      :default-name="defaultSideMenu"
+      :username="userInfo.username"
+      :class="`${pre}__header`"
+      @userMenuClick="onUserMenuClick"
+    >
+      <template v-slot:beforeUser>
+        <slot name="headerBeforeUser"></slot>
+      </template>
+    </BasicHeader>
+    <Layout :class="`${pre}__main`">
+      <Sider hide-trigger :class="`${pre}__side`">
         <BasicMenu :data="headerMenus" :default-name="defaultSideMenu" :open-names="openMenuNames">
         </BasicMenu>
       </Sider>
-      <Content>
-        <router-view />
+      <Content :class="`${pre}__page`">
+        <slot></slot>
       </Content>
     </Layout>
     <Footer>Footer</Footer>
@@ -43,6 +27,7 @@
 
 <script>
 import BasicMenu from './BasicMenu';
+import BasicHeader from './BasicHeader';
 
 import { headerMenus, getMenus, getPath } from '../const';
 import { projectName, uiPre } from '../../config/env';
@@ -51,8 +36,17 @@ export default {
   name: 'BasicLayout',
   components: {
     BasicMenu,
+    BasicHeader,
   },
   props: {
+    userInfo: {
+      type: Object,
+      default() {
+        return {
+          username: '',
+        };
+      },
+    },
     sideWidth: {
       type: Number,
       default: 240,
@@ -62,6 +56,14 @@ export default {
       default() {
         return [];
       },
+    },
+  },
+  watch: {
+    $route(newRoute) {
+      const { currMenuName, openMenuNames } = this.getCurrMenu(newRoute);
+      // 根据当前匹配的路径表得到面包屑路径数据
+      this.defaultSideMenu = currMenuName;
+      this.openMenuNames = openMenuNames;
     },
   },
   data() {
@@ -76,6 +78,9 @@ export default {
     };
   },
   methods: {
+    onUserMenuClick(menuName) {
+      this.$emit('userMenuClick', menuName);
+    },
     // 获取当前需点亮的菜单路由路径，和需要打开的菜单名列表
     getCurrMenu($route) {
       // this.menusMap = {};
@@ -116,7 +121,19 @@ export default {
 $name: "basicLayout";
 .#{$pre}#{$name} {
   height: 100%;
-
+  .#{$pre}#{$name}__header {
+    height: $layout-header-height;
+  }
+  .#{$pre}#{$name}__main {
+    margin-top: $layout-header-height;
+    overflow: hidden;
+  }
+  .#{$pre}#{$name}__side {
+    padding-top: $gap;
+    background: $white;
+    box-shadow: 2px 0px $shadow-y rgba(21, 101, 167, 0.2);
+    overflow-y: auto;
+  }
   .ivu-layout-content {
     padding: $gap-medium $gap;
   }

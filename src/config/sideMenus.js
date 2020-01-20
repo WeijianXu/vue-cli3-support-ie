@@ -6,15 +6,16 @@ import { menu } from '../layout';
  * 但是面包屑会显示第三级菜单
  */
 export default [
-  menu({ name: 'workportal', text: '工作门户', to: '/workportal/' }),
-  menu({ name: 'risk', text: '风险预警', to: '/risk/' }),
+  menu({ name: 'home', text: '首页', to: '/index' }),
   menu({
-    name: 'decision',
-    text: '决策支持',
-    to: '/decision/',
+    name: 'support',
+    text: '兼容IE',
+    to: '',
     children: [
-      menu({ name: 'performance', text: '效能总览', to: '/decision/jg/portal/performance' }),
+      menu({ name: 'iview', text: 'View design', to: '/support/iview' }),
+      menu({ name: 'ele', text: 'Element UI', to: '/support/ele' }),
     ],
   }),
-  menu({ name: 'datacenter', text: '监管数据中心', to: '/datacenter/' }),
+  // menu({ name: 'decision', text: '决策支持', to: `${originPath}/decision/` }),
+  menu({ name: 'about', text: '关于我们', to: '/about' }),
 ];
