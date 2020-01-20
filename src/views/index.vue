@@ -1,48 +1,37 @@
 <template>
-  <Layout>
-    <Header>
-      <Menu mode="horizontal" theme="primary" active-name="home">
-        <MenuItem name="home" to="/">
-          <Icon type="ios-home-outline" />
-          首页
-        </MenuItem>
-        <Submenu name="support">
-          <template slot="title">
-            <Icon type="ios-stats" />
-            兼容IE
-          </template>
-          <MenuGroup title="ui">
-            <MenuItem name="view-design" to="/support/iview">View design</MenuItem>
-            <MenuItem name="element ui" to="/support/ele">Element UI</MenuItem>
-          </MenuGroup>
-        </Submenu>
-        <MenuItem name="about" to="/about">
-          <Icon type="ios-people" />
-          关于我们
-        </MenuItem>
-      </Menu>
-    </Header>
-    <Layout>
-      <Sider hide-trigger>Sider</Sider>
-      <Content>
-        <router-view />
-      </Content>
-    </Layout>
-    <Footer>Footer</Footer>
-  </Layout>
+  <BasicLayout :side-menus="sideMenus">
+    <BasicBread :menus="sideMenus" class="page__bread"></BasicBread>
+    <div class="page__body">
+      <router-view></router-view>
+    </div>
+  </BasicLayout>
 </template>
 
 <script>
-export default {};
+import { BasicLayout, BasicBread } from '@/layout';
+import sideMenus from '@/config/sideMenus';
+
+export default {
+  components: {
+    BasicLayout,
+    BasicBread,
+  },
+  data() {
+    return {
+      sideMenus,
+    };
+  },
+};
 </script>
 
 <style lang="scss">
-@import "@/theme/variants";
+@import "@/theme/index";
 
-.ivu-layout {
-  height: 100%;
+.page__bread, .page__body {
+  margin: $gap-medium $gap;
 }
-.ivu-layout-content {
-  padding: $gap-medium $gap;
-}
+// .page__body{
+//   // 边距共 20px *4 + 2px（防抖）
+//   height: calc(100% - 82px);
+// }
 </style>
