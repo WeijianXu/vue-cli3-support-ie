@@ -16,6 +16,5 @@ export default [
       menu({ name: 'ele', text: 'Element UI', to: '/support/ele' }),
     ],
   }),
-  // menu({ name: 'decision', text: '决策支持', to: `${originPath}/decision/` }),
   menu({ name: 'about', text: '关于我们', to: '/about' }),
 ];

@@ -31,8 +31,6 @@ export default {
 
 <style lang="scss">
 @import "@/theme/variants";
-@import "@/theme/mixins";
-@import "@/config/env";
 
 $pre: "#{$uiPre}articalCard";
 

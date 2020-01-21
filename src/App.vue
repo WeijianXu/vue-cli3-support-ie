@@ -37,4 +37,23 @@ html {
     }
   }
 } */
+
+#app {
+  // 设置默认盒模型为标准盒模型
+  * {
+    box-sizing: content-box;
+  }
+  // 保留 ivu 中的 border-box 盒模型
+  [class*="ivu-"] {
+    box-sizing: border-box;
+  }
+  // 保留 element-ui 中 盒模型设置
+  [class*="el-"],
+  .el-table th>.cell  {
+    box-sizing: border-box;
+  }
+  .el-card {
+    box-sizing: content-box;
+  }
+}
 </style>
