@@ -18,6 +18,10 @@
         </BasicMenu>
       </Sider>
       <Content :class="`${pre}__page`">
+        <Alert v-if="browserAlert" type="warning" show-icon closable :class="`${pre}__alert`">
+          浏览器版本提醒
+          <span slot="desc">{{browserAlert}}</span>
+        </Alert>
         <slot></slot>
       </Content>
     </Layout>
@@ -31,6 +35,7 @@ import BasicHeader from './BasicHeader';
 
 import { headerMenus, getMenus, getPath } from '../const';
 import { projectName, uiPre } from '../../config/env';
+import { GlobU } from '../../utils';
 
 export default {
   name: 'BasicLayout',
@@ -75,6 +80,7 @@ export default {
       // 当前应当点亮的侧边栏
       defaultSideMenu: currMenuName,
       openMenuNames,
+      browserAlert: this.getBrowerAlert(),
     };
   },
   methods: {
@@ -110,6 +116,21 @@ export default {
       }
       return { currMenuName, openMenuNames };
     },
+    // 获取浏览器提醒
+    getBrowerAlert() {
+      const ieV = GlobU.ieVersion();
+      let desc;
+      if (ieV !== -1 && ieV !== 'edge') {
+        desc = '请您使用Chrome、Firefox等现代浏览器';
+      }
+      if (ieV === 'edge' && GlobU.getModernBrowserVer('Edge') < 16) {
+        desc = '请您升级当前浏览器至最新版本';
+      }
+      if (desc) {
+        return `为了更好的体验效果，${desc}`;
+      }
+      return '';
+    },
   },
 };
 </script>
@@ -133,6 +154,9 @@ $name: "basicLayout";
     background: $white;
     box-shadow: 2px 0px $shadow-y rgba(21, 101, 167, 0.2);
     overflow-y: auto;
+  }
+  .#{$pre}#{$name}__alert {
+    margin: $gap-medium $gap;
   }
 }
 </style>
