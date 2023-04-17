@@ -9,7 +9,10 @@ module.exports = {
   // },
   productionSourceMap: false, // 生产打包时不输出map文件，增加打包速度
   // 需要开启语法转化
-  transpileDependencies: [],
+  transpileDependencies: [
+    // 编译 view-design
+    'view-design',
+  ],
   configureWebpack: (config) => {
     // 子模块路径别名
     // config.resolve.alias['@zj'] = path.resolve(__dirname, 'src');

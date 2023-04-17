@@ -17,7 +17,7 @@ import {
   // 菜单
   Menu, MenuGroup, MenuItem, Submenu,
   // 消息提示
-  Message, Tooltip,
+  Message, Tooltip, Alert,
   // 表格
   Table, Tabs, TabPane, Tag,
   Page,
@@ -31,7 +31,7 @@ import '../theme/custom-view.less';
 // inject plugins/compoments，使用官网推荐方式，不加前缀 i-，大写形式
 const components = {
   // Affix,
-  // Alert,
+  Alert,
   // Anchor,
   // AnchorLink,
   // AutoComplete,
